@@ -21,7 +21,7 @@ namespace MyStrategy
   {
     //print("GoalKeeper\n");
 
-	Vec2D dpoint(OUR_GOAL_X+DBOX_HEIGHT,state->ballPos.y);
+	Vec2D dpoint(OUR_GOAL_X + DBOX_HEIGHT, rayCastY(state, botID));
 
     if(dpoint.y > OUR_GOAL_MAXY)
       dpoint.y = OUR_GOAL_MAXY;
