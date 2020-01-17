@@ -254,7 +254,7 @@ namespace MyStrategy
 				GoToPoint(botID,state,s1, 90,false, true);
 			else if(state->homeVel[botID].y<0)
 				GoToPoint(botID,state,s2, 90,false, true);
-
+       
 				
 			//	GoToPoint(botID,state,s2, 90,false, false);
 		//	else if(abs(state->homePos[botID].y-s2.y)==BOT_BALL_THRESH)
@@ -262,6 +262,19 @@ namespace MyStrategy
 		    
             
   }
+ float rayCastY(BeliefState* state, int BotID)
+ {
+
+     Vec2D ballpos = state->ballPos;
+     Vector2D <float> ballvel = state->ballVel;
+     if (ballvel.x < 0)
+     {
+         float slope = ballvel.y / ballvel.x;
+         float y = (state->homePos[BotID].x - ballpos.x) * slope + ballpos.y;
+         return y;
+     }
+     return 0;
+ }
 		
 } // namespace MyStrategy
   
