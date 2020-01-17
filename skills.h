@@ -73,7 +73,9 @@ namespace MyStrategy
      * And you can also add new skills depending upon your need here.
     */
     /*********************************************************************************************************************/
-    
+    //I add here..-JPSY
+
+    float rayCastY(BeliefState* state, int botID);
 
     bool pointyInField(Vector2D<int> final);
 
@@ -84,6 +86,7 @@ namespace MyStrategy
         comm->clearDebugData();
       #endif
     }
+
 
 
 
