@@ -10,7 +10,7 @@ namespace MyStrategy
 	//It follows the ball
 	Vec2D dpoint;
 	dpoint.x = -HALF_FIELD_MAXX/2;
-	dpoint.y = state->ballPos.y;
-    GoToPoint(botID,state,dpoint,PI/2,false,false);
+    dpoint.y = rayCastY(state, botID);
+    GoToPointStraight(botID,state,dpoint,PI/2,false,false);
   }
 }
