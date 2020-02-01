@@ -6,13 +6,14 @@
 #include "Attacker.hpp"
 #include "Defender.hpp"
 #include "GoalKeeper.hpp"
+#include "striker.hpp"
 
 // Change your team color here (BLUE_TEAM/YELLOW_TEAM)face
 
 Simulator::TeamColor teamColor = Simulator::BLUE_TEAM;
 
 // Make usingDebugger is false when playing against an opponent
-bool usingDebugger = true;
+bool usingDebugger = false;
 
 namespace MyStrategy
 {
@@ -20,8 +21,30 @@ namespace MyStrategy
   // You can also make new functions and call them from game function.
   void game(BeliefState *state)
   {
-	  attacker(state,2);
-	  defender(state,1);
-	  goalkeeper(state,0);
+      int a=1, d=2, g = 0;
+
+      if (state->pr_ballOppSide )
+      {
+          if (state->homePos[1].x > state->homePos[2].x)
+          {
+              a = 1;
+              d = 2;
+          }
+          else
+          {
+              a = 2;
+              d = 1;
+          }
+      }
+	  striker(state,a);
+	  
+      if (state->ballPos.x < HALF_FIELD_MAXX/2 && state->ballPos.x > -HALF_FIELD_MAXX/2) defender(state, d);
+
+      else if(state->ballPos.x <= -HALF_FIELD_MAXX / 2)  striker(state, d);
+
+      else attacker(state, d);
+
+      /*if (state->pr_ball_in_our_dbox) attacker(state, 0);
+      else*/ goalkeeper(state,g);
   }
-}
+}							
